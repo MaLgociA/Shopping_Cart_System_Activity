@@ -7,10 +7,10 @@ namespace Shopping_Cart_System_Quiz
         // Created Array of Products (Video Game Products/Items in particular.)
         Product[] products = new Product[]
         {
-            new Product(1, "Resident Evil: Requiem", 3500, 20),
+            new Product(1, "Resident Evil: Requiem", 3000, 20),
             new Product(2, "Last of Us 2 Remastered", 2000, 10),
             new Product(3, "Borderlands 4", 1200, 10),
-            new Product(4, "NBA 2K26,", 3000, 15),
+            new Product(4, "NBA 2K26", 3000, 15),
             new Product(5, "Tekken 8", 2500, 10),
         };
 
@@ -23,12 +23,32 @@ namespace Shopping_Cart_System_Quiz
             Console.Clear();
             Console.WriteLine("=== Welcome to Video Game Shop! ===\n");
 
-            for (int i = 0; i < products.Length; i++)
+            // To display all products listed.
+            for (int i = 0; i < products.Length; i++) // 
             {
                 products[i].DisplayProduct(i + 1);
             }
-
             
+            Console.WriteLine("Enter product/s that you want to buy: ");
+            string input = Console.ReadLine();
+
+            int productIndex;
+
+            if (!int.TryParse(input, out productIndex))
+            {
+                Console.WriteLine("Invalid Input!");
+                Console.ReadLine();
+                continue;
+            }
+
+            productIndex--;
+
+            if(productIndex <0 || productIndex >= products.Length)
+            {
+                Console.WriteLine("Invalid Product ID!");
+                Console.ReadLine();
+                continue;
+            }
         }   
     }
 }
