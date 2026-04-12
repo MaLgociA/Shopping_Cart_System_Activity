@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http.Headers;
 
 namespace Shopping_Cart_System_Quiz
 {
@@ -43,9 +44,37 @@ namespace Shopping_Cart_System_Quiz
 
             productIndex--;
 
-            if(productIndex <0 || productIndex >= products.Length)
+            if (productIndex <0 || productIndex >= products.Length)
             {
                 Console.WriteLine("Invalid Product ID!");
+                Console.ReadLine();
+                continue;
+            }
+
+            Product selected = products[productIndex];
+
+            if (selected.RemainingStock == 0)
+            {
+                Console.WriteLine("This particular Video Game Product is out of stock already!");
+                Console.ReadLine();
+                continue;
+            }
+
+            Console.WriteLine("Enter the quantity of game/s you'd like to buy: ");
+            string qtyInput = Console.ReadLine();
+
+            int qty;
+
+            if (!int.TryParse(qtyInput, out qty) || qty <= 0)
+            {
+                Console.WriteLine("Invalid Quantity!");
+                Console.ReadLine();
+                continue;
+            }
+
+            if (!selected.HasEnoughStock(qty))
+            {
+                Console.WriteLine("Not Enough Stock Available for this Game already!");
                 Console.ReadLine();
                 continue;
             }
