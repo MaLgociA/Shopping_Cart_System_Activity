@@ -100,7 +100,25 @@ namespace Shopping_Cart_System_Quiz
                     Console.ReadLine();
                     continue;
                 }
+
+                cart[cartCount] = new CartItem
+                {
+                    ProductName = selected.Name,
+                    Quantity = qty,
+                    Subtotal = selected.GetItemTotal(qty)
+                };
+
+                cartCount++;
             }
+
+            selected.DeductStock(qty);
+            Console.WriteLine("Video Game Product added to cart!");
+
+            Console.WriteLine("\nAdd more product to your cart? (Y/N); ");
+            string again = Console.ReadLine().ToUpper();
+
+            if (again != "Y")
+                break;       
         }          
     }   
 }
