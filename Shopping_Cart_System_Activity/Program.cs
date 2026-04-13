@@ -29,12 +29,14 @@ namespace Shopping_Cart_System_Quiz
             {
                 products[i].DisplayProduct(i + 1);
             }
-            
+
+            // Ask the user to choose product/s available.
             Console.WriteLine("Enter product/s that you want to buy: ");
             string input = Console.ReadLine();
 
             int productIndex;
-
+            
+            // Check if the user's input is a valid number or not.
             if (!int.TryParse(input, out productIndex))
             {
                 Console.WriteLine("Invalid Input!");
@@ -42,8 +44,9 @@ namespace Shopping_Cart_System_Quiz
                 continue;
             }
 
-            productIndex--;
+            productIndex--; // Adjust because array starts at 0.
 
+            // Check if the product ID is valid or not.
             if (productIndex <0 || productIndex >= products.Length)
             {
                 Console.WriteLine("Invalid Product ID!");
@@ -51,8 +54,9 @@ namespace Shopping_Cart_System_Quiz
                 continue;
             }
 
-            Product selected = products[productIndex];
+            Product selected = products[productIndex]; // Selected Product
 
+            // Check if product is out of stock.
             if (selected.RemainingStock == 0)
             {
                 Console.WriteLine("This particular Video Game Product is out of stock already!");
@@ -60,11 +64,13 @@ namespace Shopping_Cart_System_Quiz
                 continue;
             }
 
+            // Ask the user the quantity of games he'd or she'd like to buy.
             Console.WriteLine("Enter the quantity of game/s you'd like to buy: ");
             string qtyInput = Console.ReadLine();
 
             int qty;
 
+            // Validate quantity input.
             if (!int.TryParse(qtyInput, out qty) || qty <= 0)
             {
                 Console.WriteLine("Invalid Quantity!");
@@ -72,6 +78,7 @@ namespace Shopping_Cart_System_Quiz
                 continue;
             }
 
+            // Check if there's enough stock to the desired product/s the user wants to buy.
             if (!selected.HasEnoughStock(qty))
             {
                 Console.WriteLine("Not Enough Stock Available for this Game already!");
@@ -79,28 +86,32 @@ namespace Shopping_Cart_System_Quiz
                 continue;
             }
 
+            // Check if the product/s already exists in cart.
             bool found = false;
 
             for (int i = 0; i < cartCount; i++)
             {
                 if (cart[i].ProductName == selected.Name)
                 {
+                    // Updates existing cart item or product.
                     cart[i].Quantity += qty;
                     cart[i].Subtotal += selected.GetItemTotal(qty);
                     found = true;
                     break;
                 }
             }
-
+            // If item or product is not found, then add new item or product to cart.
             if (!found)
             {
+                // Check if cart is full already.
                 if (cartCount >= cart.Length)
                 {
                     Console.WriteLine("Cart is full already!");
                     Console.ReadLine();
                     continue;
                 }
-
+                
+                // Add new item or product to cart
                 cart[cartCount] = new CartItem
                 {
                     ProductName = selected.Name,
@@ -108,12 +119,13 @@ namespace Shopping_Cart_System_Quiz
                     Subtotal = selected.GetItemTotal(qty)
                 };
 
-                cartCount++;
+                cartCount++; // Increase cart count.
             }
-
+            // Deduct Stock Update after adding to cart.
             selected.DeductStock(qty);
             Console.WriteLine("Video Game Product added to cart!");
 
+            // Ask if the user wants to continue or not.
             Console.WriteLine("\nAdd more product to your cart? (Y/N); ");
             string again = Console.ReadLine().ToUpper();
 
