@@ -78,6 +78,29 @@ namespace Shopping_Cart_System_Quiz
                 Console.ReadLine();
                 continue;
             }
+
+            bool found = false;
+
+            for (int i = 0; i < cartCount; i++)
+            {
+                if (cart[i].ProductName == selected.Name)
+                {
+                    cart[i].Quantity += qty;
+                    cart[i].Subtotal += selected.GetItemTotal(qty);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                if (cartCount >= cart.Length)
+                {
+                    Console.WriteLine("Cart is full already!");
+                    Console.ReadLine();
+                    continue;
+                }
+            }
         }   
     }
 }
