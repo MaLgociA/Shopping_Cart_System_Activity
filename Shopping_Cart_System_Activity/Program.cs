@@ -155,6 +155,14 @@ namespace Shopping_Cart_System_Quiz
 
         double finalTotal = grandTotal - discount;
         Console.WriteLine($"Final Total of your purchase after discount is: {finalTotal}");
-                  
+
+        Console.WriteLine("\n=== UPDATED STOCK ===");
+        for (int i = 0; i < products.Length; i++)
+        {
+            Console.WriteLine($"{products[i].Name} - Remaining: {products[i].RemainingStock}");
+        }
+
+        Console.WriteLine("\nThank you for buying in Video Game Shop!");
+        Console.ReadLine();
     }   
 }
