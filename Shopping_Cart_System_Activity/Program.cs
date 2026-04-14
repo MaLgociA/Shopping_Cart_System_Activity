@@ -33,7 +33,7 @@ namespace Shopping_Cart_System_Quiz
             }
 
             // Ask the user to choose product/s available.
-            Console.WriteLine("Enter product/s that you want to buy: ");
+            Console.WriteLine("Enter the product that you want to buy: ");
             string input = Console.ReadLine();
 
             int productIndex;
@@ -67,7 +67,7 @@ namespace Shopping_Cart_System_Quiz
             }
 
             // Ask the user the quantity of games he'd or she'd like to buy.
-            Console.WriteLine("Enter the quantity of game/s you'd like to buy: ");
+            Console.WriteLine("Enter the quantity of the game you'd like to buy: ");
             string qtyInput = Console.ReadLine();
 
             int qty;
@@ -141,7 +141,7 @@ namespace Shopping_Cart_System_Quiz
         double grandTotal = 0;
         for (int i = 0; i < cartCount; i++)
         {
-            Console.WriteLine($"{cart[i].ProductName}x{cart[i].Quantity} = {cart[i].Subtotal}");
+            Console.WriteLine($"{cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
             grandTotal += cart[i].Subtotal;
         }
 
