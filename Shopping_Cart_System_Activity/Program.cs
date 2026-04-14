@@ -33,7 +33,7 @@ namespace Shopping_Cart_System_Quiz
             }
 
             // Ask the user to choose product/s available.
-            Console.WriteLine("Enter the product that you want to buy: ");
+            Console.WriteLine("Enter the product ID of the product that you want to buy: ");
             string input = Console.ReadLine();
 
             int productIndex;
@@ -112,7 +112,6 @@ namespace Shopping_Cart_System_Quiz
                     Console.ReadLine();
                     continue;
                 }
-                
                 // Add new item or product to cart
                 cart[cartCount] = new CartItem
                 {
@@ -135,20 +134,22 @@ namespace Shopping_Cart_System_Quiz
                 break;       
         }
 
+        // ==== CHECKOUT ====
         Console.Clear();
         Console.WriteLine("=== RECEIPT ===\n");
 
         double grandTotal = 0;
+        // Display all cart items or products.
         for (int i = 0; i < cartCount; i++)
         {
             Console.WriteLine($"{cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
-            grandTotal += cart[i].Subtotal;
+            grandTotal += cart[i].Subtotal; // Compute Total.
         }
 
         Console.WriteLine($"\nGrand Total of your purchase is: {grandTotal}");
 
         double discount = 0;
-
+        //Apply Discount if total purchase >= 5000
         if (grandTotal >= 5000)
         {
             discount = grandTotal * 0.10;
@@ -158,6 +159,7 @@ namespace Shopping_Cart_System_Quiz
         double finalTotal = grandTotal - discount;
         Console.WriteLine($"Final Total of your purchase after discount is: {finalTotal}");
 
+        // Display updated stock after checkout or the whole receipt itself.
         Console.WriteLine("\n=== UPDATED STOCK ===");
         for (int i = 0; i < products.Length; i++)
         {
