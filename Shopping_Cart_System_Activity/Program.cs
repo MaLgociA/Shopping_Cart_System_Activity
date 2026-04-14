@@ -145,6 +145,16 @@ namespace Shopping_Cart_System_Quiz
 
         Console.WriteLine($"\nGrand Total of your purchase is: {grandTotal}");
 
-        double discount = 0;          
+        double discount = 0;
+
+        if (grandTotal >= 5000)
+        {
+            discount = grandTotal * 0.10;
+            Console.WriteLine($"Your total purchase is discounted by 10%.: {discount}");
+        }
+
+        double finalTotal = grandTotal - discount;
+        Console.WriteLine($"Final Total of your purchase after discount is: {finalTotal}");
+                  
     }   
 }
