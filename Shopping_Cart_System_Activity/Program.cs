@@ -155,10 +155,12 @@ namespace Shopping_Cart_System_Quiz
             discount = grandTotal * 0.10;
             Console.WriteLine($"Your total purchase is discounted by 10%.: {discount}");
         }
-
+        if (grandTotal >= 5000)
+        {
         double finalTotal = grandTotal - discount;
         Console.WriteLine($"Final Total of your purchase after discount is: {finalTotal}");
-
+        }
+        
         // Display updated stock after checkout or the whole receipt itself.
         Console.WriteLine("\n=== UPDATED STOCK ===");
         for (int i = 0; i < products.Length; i++)
