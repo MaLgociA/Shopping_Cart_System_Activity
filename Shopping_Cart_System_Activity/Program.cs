@@ -131,6 +131,20 @@ namespace Shopping_Cart_System_Quiz
 
             if (again != "Y")
                 break;       
-        }          
+        }
+
+        Console.Clear();
+        Console.WriteLine("=== RECEIPT ===\n");
+
+        double grandTotal = 0;
+        for (int i = 0; i < cartCount; i++)
+        {
+            Console.WriteLine($"{cart[i].ProductName}x{cart[i].Quantity} = {cart[i].Subtotal}");
+            grandTotal += cart[i].Subtotal;
+        }
+
+        Console.WriteLine($"\nGrand Total of your purchase is: {grandTotal}");
+
+        double discount = 0;          
     }   
 }
