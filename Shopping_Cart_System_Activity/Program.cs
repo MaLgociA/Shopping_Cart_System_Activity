@@ -3,6 +3,8 @@ using System.Net.Http.Headers;
 
 namespace Shopping_Cart_System_Quiz
 {
+    class Program
+    {
     static void Main(string[] args)
     {
         // Created Array of Products (Video Game Products/Items in particular.)
@@ -164,5 +166,49 @@ namespace Shopping_Cart_System_Quiz
 
         Console.WriteLine("\nThank you for buying in Video Game Shop!");
         Console.ReadLine();
-    }   
+        }
+    }  
+}
+
+class Product
+{
+    public int Id;
+    public string Name;
+    public double Price;
+    public int RemainingStock;
+
+    public Product(int id, string name, double price, int stock)
+    {
+        Id = id;
+        Name = name;
+        Price = price;
+        RemainingStock = stock;
+    }
+
+    public void DisplayProduct(int number)
+    {
+        Console.WriteLine($"{number}. {Name} - {Price} (Stock: {RemainingStock})");
+    }
+
+    public double GetItemTotal(int quantity)
+    {
+        return Price * quantity;
+    }
+
+    public bool HasEnoughStock(int quantity)
+    {
+        return RemainingStock >= quantity;
+    }
+
+    public void DeductStock(int quantity)
+    {
+        RemainingStock -= quantity;
+    }
+}
+
+class CartItem
+{
+    public string ProductName;
+    public int Quantity;
+    public double Subtotal;
 }
