@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 
 namespace Shopping_Cart_System_Activity
 {
-    class Program
+    public class Program
     {
     static void Main(string[] args)
     {
