@@ -18,7 +18,8 @@ namespace Shopping_Cart_System_Activity
         };
 
         // Created Cart Array for Maximum of 5 Video Game Products/Items only.)
-        CartItem[] cart = new CartItem[5];
+        int maxCart = 5;
+        CartItem[] cart = new CartItem[maxCart];
         int cartCount = 0; // This helps keep track of items/products in cart.
 
         while(true) // This loop continues not until the user stops shopping.
