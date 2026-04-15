@@ -17,8 +17,8 @@ namespace Shopping_Cart_System_Activity
             new Product(5, "Tekken 8", 2500, 10),
         };
 
-        // Created Cart Array for Maximum of 20 Video Game Products/Items only.)
-        CartItem[] cart = new CartItem[20];
+        // Created Cart Array for Maximum of 5 Video Game Products/Items only.)
+        CartItem[] cart = new CartItem[5];
         int cartCount = 0; // This helps keep track of items/products in cart.
 
         while(true) // This loop continues not until the user stops shopping.
