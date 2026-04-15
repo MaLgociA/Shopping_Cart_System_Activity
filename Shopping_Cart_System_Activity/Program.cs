@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http.Headers;
 
-namespace Shopping_Cart_System_Quiz
+namespace Shopping_Cart_System_Activity
 {
     class Program
     {
@@ -160,7 +160,7 @@ namespace Shopping_Cart_System_Quiz
         double finalTotal = grandTotal - discount;
         Console.WriteLine($"Final Total of your purchase after discount is: {finalTotal}");
         }
-        
+
         // Display updated stock after checkout or the whole receipt itself.
         Console.WriteLine("\n=== UPDATED STOCK ===");
         for (int i = 0; i < products.Length; i++)
