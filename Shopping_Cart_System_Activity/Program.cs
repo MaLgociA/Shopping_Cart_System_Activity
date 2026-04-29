@@ -1,219 +1,23 @@
 ﻿using System;
-using System.Net.Http.Headers;
 
-namespace Shopping_Cart_System_Activity
+namespace ShoppingCartSystemActivity
 {
     public class Program
     {
-    static void Main(string[] args)
-    {
-        // Created Array of Products (Video Game Products/Items in particular.)
-        Product[] products = new Product[]
+        static void Main(string[] args)
         {
-            new Product(1, "Resident Evil: Requiem", 3000, 20),
-            new Product(2, "Last of Us 2 Remastered", 2000, 10),
-            new Product(3, "Borderlands 4", 1200, 10),
-            new Product(4, "NBA 2K26", 3000, 15),
-            new Product(5, "Tekken 8", 2500, 10),
-        };
-
-        // Created Cart Array for Maximum of 5 Video Game Products/Items only.)
-        int maxCart = 5;
-        CartItem[] cart = new CartItem[maxCart];
-        int cartCount = 0; // This helps keep track of items/products in cart.
-
-        while(true) // This loop continues not until the user stops shopping.
-        {
-            Console.Clear();
-            Console.WriteLine("=== Welcome to Video Game Shop! ===\n");
-
-            // To display all products listed.
-            for (int i = 0; i < products.Length; i++) // 
+            Product[] products = new Product[]
             {
-                products[i].DisplayProduct(i + 1);
-            }
+                // PART 2: Added Category Field
 
-            // Ask the user to choose product/s available.
-            Console.WriteLine("Enter the product ID of the product that you want to buy: ");
-            string input = Console.ReadLine();
+                new Product(1, "Resident Evil: Requiem", 3000, 20, "Survival Horror"),
+                new Product(2, "Last of Us 2 Remastered", 2000, 10, "Action-Adventure"),
+                new Product(3, "Borderlands 4", 1200, 10, "First-Person"),
+                new Product(4, "NBA 2K26", 3000, 15, "Sports Simulation"),
+                new Product(5, "Tekken 8", 2500, 10, "3D Fighting Game"),
+            };
 
-            int productIndex;
             
-            // Check if the user's input is a valid number or not.
-            if (!int.TryParse(input, out productIndex))
-            {
-                Console.WriteLine("Invalid Input!");
-                Console.ReadLine();
-                continue;
-            }
-
-            productIndex--; // Adjust because array starts at 0.
-
-            // Check if the product ID is valid or not.
-            if (productIndex <0 || productIndex >= products.Length)
-            {
-                Console.WriteLine("Invalid Product ID!");
-                Console.ReadLine();
-                continue;
-            }
-
-            Product selected = products[productIndex]; // Selected Product
-
-            // Check if product is out of stock.
-            if (selected.RemainingStock == 0)
-            {
-                Console.WriteLine("This particular Video Game Product is out of stock already!");
-                Console.ReadLine();
-                continue;
-            }
-
-            // Ask the user the quantity of games he'd or she'd like to buy.
-            Console.WriteLine("Enter the quantity of the game you'd like to buy: ");
-            string qtyInput = Console.ReadLine();
-
-            int qty;
-
-            // Validate quantity input.
-            if (!int.TryParse(qtyInput, out qty) || qty <= 0)
-            {
-                Console.WriteLine("Invalid Quantity!");
-                Console.ReadLine();
-                continue;
-            }
-
-            // Check if there's enough stock to the desired product/s the user wants to buy.
-            if (!selected.HasEnoughStock(qty))
-            {
-                Console.WriteLine("Not Enough Stock Available for this Game already!");
-                Console.ReadLine();
-                continue;
-            }
-
-            // Check if the product/s already exists in cart.
-            bool found = false;
-
-            for (int i = 0; i < cartCount; i++)
-            {
-                if (cart[i].ProductName == selected.Name)
-                {
-                    // Updates existing cart item or product.
-                    cart[i].Quantity += qty;
-                    cart[i].Subtotal += selected.GetItemTotal(qty);
-                    found = true;
-                    break;
-                }
-            }
-            // If item or product is not found, then add new item or product to cart.
-            if (!found)
-            {
-                // Check if cart is full already.
-                if (cartCount >= cart.Length)
-                {
-                    Console.WriteLine("Cart is full already!");
-                    Console.ReadLine();
-                    continue;
-                }
-                // Add new item or product to cart
-                cart[cartCount] = new CartItem
-                {
-                    ProductName = selected.Name,
-                    Quantity = qty,
-                    Subtotal = selected.GetItemTotal(qty)
-                };
-
-                cartCount++; // Increase cart count.
-            }
-            // Deduct Stock Update after adding to cart.
-            selected.DeductStock(qty);
-            Console.WriteLine("Video Game Product added to cart!");
-
-            // Ask if the user wants to continue or not.
-            Console.WriteLine("\nAdd more product to your cart? (Y/N); ");
-            string again = Console.ReadLine().ToUpper();
-
-            if (again != "Y")
-                break;       
         }
-
-        // ==== CHECKOUT ====
-        Console.Clear();
-        Console.WriteLine("=== RECEIPT ===\n");
-
-        double grandTotal = 0;
-        // Display all cart items or products.
-        for (int i = 0; i < cartCount; i++)
-        {
-            Console.WriteLine($"{cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
-            grandTotal += cart[i].Subtotal; // Compute Total.
-        }
-
-        Console.WriteLine($"\nGrand Total of your purchase is: {grandTotal}");
-
-        double discount = 0;
-        //Apply Discount if total purchase >= 5000
-        if (grandTotal >= 5000)
-        {
-            discount = grandTotal * 0.10;
-            Console.WriteLine($"Your total purchase is discounted by 10%.: {discount}");
-        }
-        if (grandTotal >= 5000)
-        {
-        double finalTotal = grandTotal - discount;
-        Console.WriteLine($"Final Total of your purchase after discount is: {finalTotal}");
-        }
-
-        // Display updated stock after checkout or the whole receipt itself.
-        Console.WriteLine("\n=== UPDATED STOCK ===");
-        for (int i = 0; i < products.Length; i++)
-        {
-            Console.WriteLine($"{products[i].Name} - Remaining: {products[i].RemainingStock}");
-        }
-
-        Console.WriteLine("\nThank you for buying in Video Game Shop!");
-        Console.ReadLine();
-        }
-    }  
-}
-
-class Product
-{
-    public int Id;
-    public string Name;
-    public double Price;
-    public int RemainingStock;
-
-    public Product(int id, string name, double price, int stock)
-    {
-        Id = id;
-        Name = name;
-        Price = price;
-        RemainingStock = stock;
     }
-
-    public void DisplayProduct(int number)
-    {
-        Console.WriteLine($"{number}. {Name} - {Price} (Stock: {RemainingStock})");
-    }
-
-    public double GetItemTotal(int quantity)
-    {
-        return Price * quantity;
-    }
-
-    public bool HasEnoughStock(int quantity)
-    {
-        return RemainingStock >= quantity;
-    }
-
-    public void DeductStock(int quantity)
-    {
-        RemainingStock -= quantity;
-    }
-}
-
-class CartItem
-{
-    public string ProductName;
-    public int Quantity;
-    public double Subtotal;
 }
