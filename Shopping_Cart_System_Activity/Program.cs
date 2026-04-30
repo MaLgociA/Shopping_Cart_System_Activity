@@ -116,7 +116,7 @@ namespace ShoppingCartSystemActivity
                     Console.ReadLine();
                 }
 
-                // PART 2: FULL CART MANAGEMENT SYSTEM
+                // PART 2: CART MANAGEMENT SYSTEM
 
                 else if (choice == "4")
                 {
@@ -296,6 +296,11 @@ namespace ShoppingCartSystemActivity
                     Console.WriteLine($"Final: {final}");
                     Console.WriteLine($"Payment: {payment}");
                     Console.WriteLine($"Change: {change}");
+
+                    Console.WriteLine("\nLOW STOCK:");
+                    for (int i = 0; i < products.Length; i++)
+                        if (products[i].RemainingStock <= 5)
+                            Console.WriteLine($"{products[i].Name} - {products[i].RemainingStock}");
 
                     orders[orderCount++] = new Order
                     {
