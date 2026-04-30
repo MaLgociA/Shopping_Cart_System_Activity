@@ -8,7 +8,7 @@ namespace ShoppingCartSystemActivity
         {
             Product[] products = new Product[]
             {
-                // PART 2: Added Category Field
+                // PART 2: ADDED CATEGORY FIELD
 
                 new Product(1, "Resident Evil: Requiem", 3000, 20, "Survival Horror"),
                 new Product(2, "Last of Us 2 Remastered", 2000, 10, "Action-Adventure"),
@@ -20,7 +20,8 @@ namespace ShoppingCartSystemActivity
             CartItem[] cart = new CartItem[5];
             int cartCount = 0;
 
-            // PART 2: Order History Storage
+            // PART 2: ORDER HISTORY STORAGE
+
             Order[] orders = new Order[20];
             int orderCount = 0;
             int receiptNo = 1;
@@ -77,6 +78,28 @@ namespace ShoppingCartSystemActivity
 
                     selected.DeductStock(q);
 
+                    // PART 2: STRICT Y/N VALIDATION
+
+                    if (!AskYN("Add another item? (Y/N): "))
+                    {
+                        break;
+                    } 
+                    
+                    // PART 2: PRODUCT SEARCH FEATURE
+
+                    else if (choice == "2")
+                    {
+                        Console.WriteLine("Search: ");
+                        string key = Console.ReadLine().ToLower();
+
+                        for (int i = 0; i < products.Length; i++)
+                        if (products[i].Name.ToLower().Contains(key))
+                        products[i].DisplayProduct(i + 1);
+
+                        Console.ReadLine();
+                    }
+                    
+                    
                 }
             }
 
