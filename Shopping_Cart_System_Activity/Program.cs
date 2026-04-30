@@ -237,8 +237,33 @@ namespace ShoppingCartSystemActivity
 
                             Console.WriteLine($"Payment: {payment}");
 
-                            Console.WriteLine($"Change: {change}");                   
+                            Console.WriteLine($"Change: {change}");
+
+                            // PART 2: SAVE TO ORDER HISTORY
+
+                            orders[orderCount++] = new Order
+                            {
+                                receiptNo = receiptNo++,
+                                FinalTotal = final
+                            };
+
+                            // PART 2: LOW STOCK ALERT FEATURE
+
+                            Console.WriteLine("\nLOW STOCK: ");
+                            
+                            for (int i = 0; i < products.Length; i++)
+
+                            if (products[i].RemainingStock <= 5)
+
+                            Console.WriteLine($"{products[i].Name} - {products[i].RemainingStock}");
+
+                            cartCount = 0;
+                            Console.ReadLine();
+                            break;
                         }
+
+                        else if (c == "5")
+                        break;
                     }
 
                 }
