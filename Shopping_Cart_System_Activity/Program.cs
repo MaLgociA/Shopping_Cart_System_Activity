@@ -322,3 +322,48 @@ namespace ShoppingCartSystemActivity
         }
     }
 }
+
+class Product
+{
+    public int Id;
+    public string Name;
+    public double Price;
+    public int RemainingStock;
+
+    // PART 2: CATEGORY FIELD
+
+    public string Category;
+
+    public Product(int id, string name, double price, int stock, string category)
+    {
+        Id = id;
+        Name = name;
+        Price = price;
+        RemainingStock = stock;
+        Category = category;
+    }
+
+    public void DisplayProduct (int number)
+    {
+        Console.WriteLine($"{number} . {Name} - {Price} - {Category} (Stock: {RemainingStock})");
+    }
+
+    public double GetItemTotal(int q) => Price * q;
+    public bool HasEnoughStock(int q) => RemainingStock >= q;
+    public void DeductStock(int q) => RemainingStock -= q;
+}
+
+class CartItem
+{
+    public string ProductName;
+    public int Quantity;
+    public double Subtotal;
+}
+
+// PART 2: ORDER HISTORY STRUCTURE
+
+class Order
+{
+    public int ReceiptNo;
+    public double FinalTotal;
+}
