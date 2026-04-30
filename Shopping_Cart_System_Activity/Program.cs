@@ -17,6 +17,28 @@ namespace ShoppingCartSystemActivity
                 new Product(5, "Tekken 8", 2500, 10, "3D Fighting Game"),
             };
 
+            CartItem[] cart = new CartItem[5];
+            int cartCount = 0;
+
+            // PART 2: Order History Storage
+            Order[] orders = new Order[20];
+            int orderCount = 0;
+            int receiptNo = 1;
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("========== MENU ==========");
+                Console.WriteLine("1. VIEW PRODUCTS");
+                Console.WriteLine("2. SEARCH PRODUCT"); // PART 2
+                Console.WriteLine("3. FILTER BY CATEGORY"); // PART 2
+                Console.WriteLine("4. MANAGE CART"); // PART 2
+                Console.WriteLine("5. VIEW ORDER HISTORY"); // PART 2
+                Console.WriteLine("6. EXIT");
+
+                string choice = Console.ReadLine();
+            }
+
             
         }
     }
