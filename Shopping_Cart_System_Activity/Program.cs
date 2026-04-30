@@ -34,7 +34,8 @@ namespace Shopping_Cart_System_Activity
                 Console.WriteLine("3. FILTER BY CATEGORY");   // PART 2
                 Console.WriteLine("4. MANAGE CART");          // PART 2
                 Console.WriteLine("5. VIEW ORDER HISTORY");   // PART 2
-                Console.WriteLine("6. EXIT");
+                Console.WriteLine("6. ADD STOCK");
+                Console.WriteLine("7. EXIT");
 
                 string choice = Console.ReadLine();
 
@@ -83,7 +84,7 @@ namespace Shopping_Cart_System_Activity
 
                     // PART 2: STRICT VALID Y/N VALIDATION
 
-                    if (!AskYN("Add another item? (Y/N): ")) break;
+                    if (!AskYN("Add another item? (Y/N): ")) continue;
                 }
 
                 // PART 2: PRODUCT SEARCH FEATURE
@@ -266,6 +267,27 @@ namespace Shopping_Cart_System_Activity
                 }
 
                 else if (choice == "6")
+                {
+                    Console.WriteLine("=== RESTOCK ===");
+
+                    for (int i = 0; i < products.Length; i++)
+                        products[i].DisplayProduct(i + 1);
+
+                    Console.Write("Select product #: ");
+                    if (!int.TryParse(Console.ReadLine(), out int p) || p < 1 || p > products.Length)
+                        return;
+
+                    Console.Write("Enter quantity to add: ");
+                    if (!int.TryParse(Console.ReadLine(), out int qty) || qty <= 0)
+                        return;
+
+                    products[p - 1].RemainingStock += qty;
+
+                    Console.WriteLine("Stock updated successfully!");
+                    Console.ReadLine();
+                }
+                
+                else if (choice == "7")
                     break;
             }
         }
