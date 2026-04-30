@@ -203,7 +203,41 @@ namespace ShoppingCartSystemActivity
                                     discount = 0;
                                 }
                                 double final = total - discount;
-                            }                   
+                            }
+
+                            // PART 2: PAYMENT VALIDATION LOOP
+
+                            double payment;
+                            while (true)
+                            {
+                                Console.WriteLine($"Final: {final}");
+                                Console.WriteLine("Payment: ");
+
+                                if (double.TryParse(Console.ReadLine(), out payment) && payment >= final) break;
+
+                                Console.WriteLine("Invalid or Insufficient Payment.");
+                            }
+                            double change = payment - final;
+
+                            // PART 2: RECEIPT NUMBER + DATE/TIME
+
+                            Console.WriteLine($"\nReceipt#: {receiptNo}");
+
+                            Console.WriteLine($"Date: {DateTime.Now}");
+
+                            for (int i = 0; i < cartCount; i++)
+
+                            Console.WriteLine($"{cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
+
+                            Console.WriteLine($"Total: {total}");
+
+                            Console.WriteLine($"Discount: {discount}");
+
+                            Console.WriteLine($"Final: {final}");
+
+                            Console.WriteLine($"Payment: {payment}");
+
+                            Console.WriteLine($"Change: {change}");                   
                         }
                     }
 
