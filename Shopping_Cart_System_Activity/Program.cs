@@ -277,9 +277,9 @@ namespace ShoppingCartSystemActivity
                         Console.WriteLine($"{cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
 
                     Console.WriteLine($"Total: PHP {total:F2}");
-                    Console.WriteLine($"Discount: {discount}");
+                    Console.WriteLine($"Discount: PHP {discount:F2}");
                     Console.WriteLine($"Final: PHP {final:F2}");
-                    Console.WriteLine($"Payment: {payment}");
+                    Console.WriteLine($"Payment: PHP {payment:F2}");
                     Console.WriteLine($"Change: PHP {change:F2}");
 
                     // PART 2: LOW STOCK ALERT
