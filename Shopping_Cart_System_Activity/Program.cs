@@ -47,7 +47,7 @@ namespace ShoppingCartSystemActivity
 
                         products[i].DisplayProduct(i + 1);
 
-                    Console.Write("Select product: ");
+                    Console.Write("Select Product ID: ");
 
                     if (!int.TryParse(Console.ReadLine(), out int p) || p < 1 || p > products.Length) continue;
 
