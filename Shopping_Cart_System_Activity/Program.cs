@@ -129,6 +129,22 @@ namespace ShoppingCartSystemActivity
 
                             Console.WriteLine("\n1. REMOVE  2. UPDATE  3. CLEAR  4. CHECKOUT  5. BACK");
                             string c = Console.ReadLine();
+
+                            // PART 2: REMOVE ITEM + RESTORE STOCK
+
+                            if (c == "1")
+                            {
+                                Console.WriteLine("Item #: ");
+                                if (int.TryParse(Console.ReadLine(), out int r) && r > 0 && r <= cartCount)
+                                {
+                                    RestoreStock(products, cart[r - 1]);  // RESTORES STOCK
+
+                                    for (int i = r - 1; i < cartCount - 1; i++)
+                                    cart[i] = cart[i + 1];
+                                    cartCount--;
+                                }
+                            }
+
                             
                         }
                     }
