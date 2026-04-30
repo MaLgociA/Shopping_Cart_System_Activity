@@ -234,23 +234,7 @@ namespace ShoppingCartSystemActivity
                                 ReceiptNo = receiptNo++,
                                 FinalTotal = final
                             };
-
-                            // PART 2: LOW STOCK ALERT
-
-                            Console.WriteLine("\nLOW STOCK:");
-
-                            for (int i = 0; i < products.Length; i++)
-
-                                if (products[i].RemainingStock <= 5)
-                                    Console.WriteLine($"{products[i].Name} - {products[i].RemainingStock}");
-
-                            cartCount = 0;
-                            Console.ReadLine();
-                            break;
                         }
-
-                        else if (c == "5")
-                            break;
                     }
                 }
 
@@ -302,6 +286,10 @@ namespace ShoppingCartSystemActivity
                         if (products[i].RemainingStock <= 5)
                             Console.WriteLine($"{products[i].Name} - {products[i].RemainingStock}");
 
+                            cartCount = 0;
+                            Console.ReadLine();
+                                continue;
+
                     orders[orderCount++] = new Order
                     {
                         ReceiptNo = receiptNo++,
@@ -312,6 +300,7 @@ namespace ShoppingCartSystemActivity
 
                     Console.ReadLine();
                     }
+                    
 
 
                 // PART 2: ORDER HISTORY DISPLAY
