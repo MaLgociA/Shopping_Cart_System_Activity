@@ -9,7 +9,7 @@ Every requirements from the Quiz-Part-2 PDF file, as well as the comments from m
 The program comprises, displays, and added the following features:
 
 **• VIEW PRODUCTS**
-- This feature displays the following listed products to my code which includes the names as well as their corresponding prices, stocks, and categories.
+- This feature displays displays a list of all available items in the system, including their Product ID, Names, Prices, Stocks, and Categories. It allows users to browse products and serves as the entry point for selecting items that they can then add to their cart in a separate step.
 
 **• SEARCH PRODUCT**
 - This feature allows the user to search a particular product availabe in the system. Just type the name of the product you desire to see, it would automatically display all the details you'd need to know for buying it. Capitalization is also not important.
