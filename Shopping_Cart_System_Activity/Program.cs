@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Shopping_Cart_System_Activity
+namespace ShoppingCartSystemActivity
 {
     public class Program
     {
@@ -32,10 +32,11 @@ namespace Shopping_Cart_System_Activity
                 Console.WriteLine("1. VIEW PRODUCTS");
                 Console.WriteLine("2. SEARCH PRODUCT");      // PART 2
                 Console.WriteLine("3. FILTER BY CATEGORY");   // PART 2
-                Console.WriteLine("4. MANAGE CART");          // PART 2
-                Console.WriteLine("5. VIEW ORDER HISTORY");   // PART 2
-                Console.WriteLine("6. ADD STOCK");
-                Console.WriteLine("7. EXIT");
+                Console.WriteLine("4. MANAGE CART");
+                Console.WriteLine("5. CHECKOUT");            // PART 2
+                Console.WriteLine("6. VIEW ORDER HISTORY");   // PART 2
+                Console.WriteLine("7. ADD STOCK");            // PART 2
+                Console.WriteLine("8. EXIT");
 
                 string choice = Console.ReadLine();
 
@@ -127,7 +128,7 @@ namespace Shopping_Cart_System_Activity
                         for (int i = 0; i < cartCount; i++)
                             Console.WriteLine($"{i + 1}. {cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
 
-                        Console.WriteLine("\n1.REMOVE   2.UPDATE   3.CLEAR   4.CHECKOUT   5.BACK");
+                        Console.WriteLine("\n1. REMOVE   2. UPDATE   3. CLEAR   4. BACK");
                         string c = Console.ReadLine();
 
                         // PART 2: REMOVE ITEM + RESTORE STOCK
@@ -253,9 +254,64 @@ namespace Shopping_Cart_System_Activity
                     }
                 }
 
-                // PART 2: ORDER HISTORY DISPLAY
+                // PART 2: CHECKOUT 
 
                 else if (choice == "5")
+                {
+                    if (cartCount == 0)
+                    {
+                        Console.WriteLine("Cart is empty.");
+                        Console.ReadLine();
+                        continue;
+                    }
+
+                    double total = 0;
+                    for (int i = 0; i < cartCount; i++)
+                        total += cart[i].Subtotal;
+
+                    double discount = total >= 5000 ? total * 0.10 : 0;
+                    double final = total - discount;
+
+                    double payment;
+                    while (true)
+                    {
+                        Console.WriteLine($"Final: {final}");
+                        Console.Write("Payment: ");
+                        if (double.TryParse(Console.ReadLine(), out payment) && payment >= final)
+                            break;
+
+                        Console.WriteLine("Invalid or insufficient payment.");
+                    }
+
+                    double change = payment - final;
+
+                    Console.WriteLine($"\nReceipt#: {receiptNo}");
+                    Console.WriteLine($"Date: {DateTime.Now}");
+
+                    for (int i = 0; i < cartCount; i++)
+                        Console.WriteLine($"{cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
+
+                    Console.WriteLine($"Total: {total}");
+                    Console.WriteLine($"Discount: {discount}");
+                    Console.WriteLine($"Final: {final}");
+                    Console.WriteLine($"Payment: {payment}");
+                    Console.WriteLine($"Change: {change}");
+
+                    orders[orderCount++] = new Order
+                    {
+                        ReceiptNo = receiptNo++,
+                        FinalTotal = final
+                    };
+
+                    cartCount = 0;
+
+                    Console.ReadLine();
+                    }
+
+
+                // PART 2: ORDER HISTORY DISPLAY
+
+                else if (choice == "6")
                 {
                     Console.WriteLine("========== HISTORY ==========");
 
@@ -266,9 +322,11 @@ namespace Shopping_Cart_System_Activity
                     Console.ReadLine();
                 }
 
-                else if (choice == "6")
+                // PART 2: MANUAL RESTOCK (ADDITIONAL FEATURE)
+
+                else if (choice == "7")
                 {
-                    Console.WriteLine("=== RESTOCK ===");
+                    Console.WriteLine("========== RESTOCK ==========");
 
                     for (int i = 0; i < products.Length; i++)
                         products[i].DisplayProduct(i + 1);
@@ -287,7 +345,7 @@ namespace Shopping_Cart_System_Activity
                     Console.ReadLine();
                 }
                 
-                else if (choice == "7")
+                else if (choice == "8")
                     break;
             }
         }
