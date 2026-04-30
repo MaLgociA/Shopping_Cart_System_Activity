@@ -113,6 +113,26 @@ namespace ShoppingCartSystemActivity
                         Console.ReadLine();
                     }
 
+                    // PART 2: FULL CART MANAGEMENT SYSTEM
+
+                    else if (choice == "4")
+                    {
+                        while (true)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("========== CART ==========");
+
+                            for (int i = 0; i < cartCount; i++)
+
+                            Console.WriteLine($"{i + 1} . {cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
+
+
+                            Console.WriteLine("\n1. REMOVE  2. UPDATE  3. CLEAR  4. CHECKOUT  5. BACK");
+                            string c = Console.ReadLine();
+                            
+                        }
+                    }
+
                 }
             }
 
