@@ -20,7 +20,8 @@ namespace ShoppingCartSystemActivity
             CartItem[] cart = new CartItem[5];
             int cartCount = 0;
 
-            // PART 2: Order history storage
+            // PART 2: ORDER HISTORY STORAGE
+
             Order[] orders = new Order[20];
             int orderCount = 0;
             int receiptNo = 1;
@@ -126,7 +127,7 @@ namespace ShoppingCartSystemActivity
                         Console.WriteLine("========== CART ==========");
 
                         for (int i = 0; i < cartCount; i++)
-                            Console.WriteLine($"{i + 1}. {cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
+                            Console.WriteLine($"{i + 1}. {cart[i].ProductName} x {cart[i].Quantity} = PHP {cart[i].Subtotal:F2}");
 
                         Console.WriteLine("\n1. REMOVE   2. UPDATE   3. CLEAR   4. BACK");
                         string c = Console.ReadLine();
@@ -275,11 +276,11 @@ namespace ShoppingCartSystemActivity
                     for (int i = 0; i < cartCount; i++)
                         Console.WriteLine($"{cart[i].ProductName} x {cart[i].Quantity} = {cart[i].Subtotal}");
 
-                    Console.WriteLine($"Total: {total}");
+                    Console.WriteLine($"Total: PHP {total:F2}");
                     Console.WriteLine($"Discount: {discount}");
-                    Console.WriteLine($"Final: {final}");
+                    Console.WriteLine($"Final: PHP {final:F2}");
                     Console.WriteLine($"Payment: {payment}");
-                    Console.WriteLine($"Change: {change}");
+                    Console.WriteLine($"Change: PHP {change:F2}");
 
                     // PART 2: LOW STOCK ALERT
 
@@ -403,7 +404,7 @@ class Product
 
     public void DisplayProduct(int number)
     {
-        Console.WriteLine($"{number}. {Name} - {Price} - {Category} (Stock: {RemainingStock})");
+        Console.WriteLine($"{number}. {Name} - PHP {Price:F2} - {Category} (Stock: {RemainingStock})");
     }
 
     public double GetItemTotal(int q) => Price * q;
