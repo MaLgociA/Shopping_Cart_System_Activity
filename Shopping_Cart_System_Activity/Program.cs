@@ -171,7 +171,39 @@ namespace ShoppingCartSystemActivity
                                     item.Quantity = nq;
                                     item.Subtotal = prod.Price * nq;
                                 }
-                            }                            
+                            }
+
+                            // PART 2: CLEAR CART + RESTORE ALL STOCK 
+
+                            else if (c == "3")
+                            {
+                                for (int i = 0; i < cartCount; i++)
+
+                                RestoreStock(products, cart[i]);
+
+                                cartCount = 0;
+                            }
+
+                            // PART 2: ENHANCED CHECKOUT
+
+                            else if (c == "4")
+                            {
+                                double total = 0;
+                                for (int i = 0; i < cartCount; i++)
+                                total += cart[i].Subtotal;
+
+                                double discount;
+
+                                if (total >= 5000)
+                                {
+                                    discount = total * 0.10;
+                                }
+                                else
+                                {
+                                    discount = 0;
+                                }
+                                double final = total - discount;
+                            }                   
                         }
                     }
 
