@@ -99,7 +99,20 @@ namespace ShoppingCartSystemActivity
                         Console.ReadLine();
                     }
                     
-                    
+                    // PART 2: CATEGORY FILTERING FEATURE
+
+                    else if (choice == "3")
+                    {
+                        Console.WriteLine("Category: ");
+                        string cat = Console.ReadLine().ToLower();
+
+                        for (int i = 0; i < products.Length; i++)
+                        if (products[i].Name.ToLower() == cat)
+                        products[i].DisplayProduct(i + 1);
+
+                        Console.ReadLine();
+                    }
+
                 }
             }
 
