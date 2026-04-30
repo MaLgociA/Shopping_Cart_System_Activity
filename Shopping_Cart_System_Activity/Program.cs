@@ -32,7 +32,7 @@ namespace ShoppingCartSystemActivity
                 Console.WriteLine("1. VIEW PRODUCTS");
                 Console.WriteLine("2. SEARCH PRODUCT");      // PART 2
                 Console.WriteLine("3. FILTER BY CATEGORY");   // PART 2
-                Console.WriteLine("4. MANAGE CART");
+                Console.WriteLine("4. MANAGE CART");          // PART 2
                 Console.WriteLine("5. CHECKOUT");            // PART 2
                 Console.WriteLine("6. VIEW ORDER HISTORY");   // PART 2
                 Console.WriteLine("7. ADD STOCK");            // PART 2
@@ -184,7 +184,7 @@ namespace ShoppingCartSystemActivity
 
                         // PART 2: ENHANCED CHECKOUT
 
-                        else if (c == "4")
+                        else if (c == "5")
                         {
                             double total = 0;
                             for (int i = 0; i < cartCount; i++)
@@ -280,6 +280,8 @@ namespace ShoppingCartSystemActivity
                     Console.WriteLine($"Final: {final}");
                     Console.WriteLine($"Payment: {payment}");
                     Console.WriteLine($"Change: {change}");
+
+                    // PART 2: LOW STOCK ALERT
 
                     Console.WriteLine("\nLOW STOCK:");
                     for (int i = 0; i < products.Length; i++)
