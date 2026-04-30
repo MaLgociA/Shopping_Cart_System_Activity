@@ -129,9 +129,13 @@ namespace ShoppingCartSystemActivity
                         for (int i = 0; i < cartCount; i++)
                             Console.WriteLine($"{i + 1}. {cart[i].ProductName} x {cart[i].Quantity} = PHP {cart[i].Subtotal:F2}");
 
-                        Console.WriteLine("\n1. REMOVE   2. UPDATE   3. CLEAR   4. BACK");
+                        Console.WriteLine("\n1.REMOVE   2.UPDATE   3.CLEAR   4.BACK");
                         string c = Console.ReadLine();
-
+                        
+                        if(c == "4")
+                        {
+                            break;
+                        }
                         // PART 2: REMOVE ITEM + RESTORE STOCK
 
                         if (c == "1")
@@ -236,6 +240,7 @@ namespace ShoppingCartSystemActivity
                                 FinalTotal = final
                             };
                         }
+
                     }
                 }
 
