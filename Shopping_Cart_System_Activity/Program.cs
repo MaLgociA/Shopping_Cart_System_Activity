@@ -37,6 +37,47 @@ namespace ShoppingCartSystemActivity
                 Console.WriteLine("6. EXIT");
 
                 string choice = Console.ReadLine();
+
+                if (choice == "1")
+                {
+                    for (int i = 0; i < products.Length; i++)
+
+                    products[i].DisplayProduct(i + 1);
+
+                    Console.WriteLine("Select Product: ");
+                    if (!int.TryParse(Console.ReadLine(), out int p) || p < 1 || p > products.Length) continue;
+
+                    Product selected = products[p - 1];
+                    if (selected.RemainingStock == 0) continue;
+
+                    Console.WriteLine("Quantity: ");
+                    if (!int.TryParse(Console.ReadLine(), out int q) || q <= 0) continue;
+
+                    if(!selected.HasEnoughStock(q)) continue;
+
+                    bool found = false;
+                    for (int i = 0; i < cartCount; i++)
+                    {
+                        if (cart[i].ProductName == selected.Name)
+                        {
+                            cart[i].Quantity += q;
+                            cart[i].Subtotal += selected.GetItemTotal(q);
+                            found = true;
+                        }
+                    }
+
+                    if (!found && cartCount < cart.Length)
+                    {
+                        cart[cartCount++] = new CartItem
+                        {
+                            Quantity = q,
+                            Subtotal = selected.GetItemTotal(q)
+                        };
+                    }
+
+                    selected.DeductStock(q);
+
+                }
             }
 
             
