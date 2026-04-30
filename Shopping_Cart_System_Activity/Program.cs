@@ -145,7 +145,33 @@ namespace ShoppingCartSystemActivity
                                 }
                             }
 
-                            
+                            // PART 2: UPDATE QUANTITY + ADJUST STOCK
+
+                            else if (c == "2")
+                            {
+                                Console.WriteLine("Item #: ");
+                                int.TryParse(Console.ReadLine(), out int u);
+                                Console.WriteLine("New Qty: ");
+                                int.TryParse(Console.ReadLine(), out int nq);
+
+                                if (u > 0 && u <= cartCount && nq > 0)
+                                {
+                                    CartItem item = cart[u - 1];
+                                    Product prod = FindProduct(products, item.ProductName);
+                                    int diff = nq - item.Quantity;
+
+                                    if (diff > 0 && !prod.HasEnoughStock(diff)) continue;
+
+                                    if (diff > 0)
+                                    prod.DeductStock(diff);
+
+                                    else
+                                    prod.RemainingStock += -diff;
+
+                                    item.Quantity = nq;
+                                    item.Subtotal = prod.Price * nq;
+                                }
+                            }                            
                         }
                     }
 
