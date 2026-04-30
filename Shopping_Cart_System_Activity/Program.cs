@@ -265,11 +265,41 @@ namespace ShoppingCartSystemActivity
                         else if (c == "5")
                         break;
                     }
-
                 }
-            }
 
-            
+                // PART 2: ORDER HISTORY DISPLAY
+
+                else if (choice == "5")
+                {
+                    Console.WriteLine("========== HISTORY ==========");
+
+                    for (int i = 0; i < orderCount; i++)
+
+                    Console.WriteLine($"Receipt#{orders[i].ReceiptNo} - {orders[i].FinalTotal}");
+                    Console.ReadLine();
+                }
+
+                else if (choice == "6")
+                break;
+            }
+        }
+
+        // PART 2: STRICT Y/N VALIDATOR
+
+        static bool AskYN(string msg)
+        {
+            while (true)
+            {
+                Console.Write(msg);
+                string ans = Console.ReadLine().ToUpper();
+
+                if (ans == "Y")
+                return true;
+
+                if (ans == "N")
+                return false;
+                Console.WriteLine("INVALID INPUT. ENTER Y OR N ONLY!");
+            }
         }
     }
 }
