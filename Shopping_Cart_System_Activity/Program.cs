@@ -301,5 +301,24 @@ namespace ShoppingCartSystemActivity
                 Console.WriteLine("INVALID INPUT. ENTER Y OR N ONLY!");
             }
         }
+
+        // PART 2: HELPER FOR STOCK RESTORATION 
+
+        static Product FindProduct(Product[] products, string name)
+        {
+            for (int i = 0; i < products.Length; i++)
+
+                if (products[i].Name == name)
+                    return products[i];
+
+            return null;
+        }
+
+        static void RestoreStock(Product[] products, CartItem item)
+        {
+            Product p = FindProduct(products, item.ProductName);
+
+            if (p != null) p.RemainingStock += item.Quantity;
+        }
     }
 }
