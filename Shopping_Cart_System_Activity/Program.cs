@@ -387,47 +387,167 @@ namespace ShoppingCartSystemActivity
     }
 }
 
+// ===============================
+// PRODUCT CLASS (ENCAPSULATION + CONSTRUCTOR) (NEW)
+// ===============================
 class Product
 {
-    public int Id;
-    public string Name;
-    public double Price;
-    public int RemainingStock;
+    // ENCAPSULATED FIELDS (NEW)
+    private int id;
+    private string name;
+    private double price;
+    private int remainingStock;
+    private string category;
 
-    // PART 2: CATEGORY FIELD
+    // GETTERS AND SETTERS (PROPERTIES) (NEW)
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
 
-    public string Category;
+    public string Name
+    {
+        get { return name; }
+        set { name = value; }
+    }
 
+    public double Price
+    {
+        get { return price; }
+        set
+        {
+            if (value >= 0)
+                price = value;
+        }
+    }
+
+    public int RemainingStock
+    {
+        get { return remainingStock; }
+        set
+        {
+            if (value >= 0)
+                remainingStock = value;
+        }
+    }
+
+    public string Category
+    {
+        get { return category; }
+        set { category = value; }
+    }
+
+    // CONSTRUCTOR (USES "this." AS ITS KEYWORD)
     public Product(int id, string name, double price, int stock, string category)
     {
-        Id = id;
-        Name = name;
-        Price = price;
-        RemainingStock = stock;
-        Category = category;
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.remainingStock = stock;
+        this.category = category;
     }
 
+    // METHODS
     public void DisplayProduct(int number)
     {
-        Console.WriteLine($"{number}. {Name} - PHP {Price:F2} - {Category} (Stock: {RemainingStock})");
+        Console.WriteLine($"{number}. {name} - PHP {price:F2} - {category} (Stock: {remainingStock})");
     }
 
-    public double GetItemTotal(int q) => Price * q;
-    public bool HasEnoughStock(int q) => RemainingStock >= q;
-    public void DeductStock(int q) => RemainingStock -= q;
+    public double GetItemTotal(int q) => price * q;
+    public bool HasEnoughStock(int q) => remainingStock >= q;
+    public void DeductStock(int q) => remainingStock -= q;
 }
 
+// ===============================
+// CART ITEM CLASS (ENCAPSULATION + CONSTRUCTOR) (NEW)
+// ===============================
 class CartItem
 {
-    public string ProductName;
-    public int Quantity;
-    public double Subtotal;
+    // ENCAPSULATED FIELDS (NEW)
+    private string productName;
+    private int quantity;
+    private double subtotal;
+
+    // GETTERS AND SETTERS (NEW)
+    public string ProductName
+    {
+        get { return productName; }
+        set { productName = value; }
+    }
+
+    public int Quantity
+    {
+        get { return quantity; }
+        set
+        {
+            if (value > 0)
+                quantity = value;
+        }
+    }
+
+    public double Subtotal
+    {
+        get { return subtotal; }
+        set
+        {
+            if (value >= 0)
+                subtotal = value;
+        }
+    }
+
+    // CONSTRUCTOR (USES "this." AS ITS KEYWORD) (NEW)
+    public CartItem(string productName, int quantity, double subtotal)
+    {
+        this.productName = productName;
+        this.quantity = quantity;
+        this.subtotal = subtotal;
+    }
+
+    // EMPTY CONSTRUCTOR (USED FOR OBJECT INITIALIZATION IF NEEDED) (NEW)
+    public CartItem()
+    {
+
+    }
 }
 
-// PART 2: ORDER HISTORY STRUCTURE
 
+// ===============================
+// ORDER HISTORY STRUCTURE (PART 2 FEATURE) (NEW)
+// ===============================
 class Order
 {
-    public int ReceiptNo;
-    public double FinalTotal;
+    // ENCAPSULATED FIELDS (NEW)
+    private int receiptNo;
+    private double finalTotal;
+
+    // GETTERS AND SETTERS (NEW)
+    public int ReceiptNo
+    {
+        get { return receiptNo; }
+        set { receiptNo = value; }
+    }
+
+    public double FinalTotal
+    {
+        get { return finalTotal; }
+        set
+        {
+            if (value >= 0)
+                finalTotal = value;
+        }
+    }
+
+    // CONSTRUCTOR (USED IN CHECKOUT HISTORY STORAGE) (NEW)
+    public Order(int receiptNo, double finalTotal)
+    {
+        this.receiptNo = receiptNo;
+        this.finalTotal = finalTotal;
+    }
+
+    // EMPTY CONSTRUCTOR (OPTIONAL FLEXIBILITY) (NEW)
+    public Order()
+    {
+
+    }
 }
